@@ -1,0 +1,29 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": { "major": 3, "minor": 21, "patch": 0 },
+  "configurePresets": [
+    {
+      "name": "debug-asan",
+      "displayName": "Debug + ASan/UBSan (default for learning)",
+      "binaryDir": "${sourceDir}/build/debug-asan",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug", "QL_ASAN": "ON" }
+    },
+    {
+      "name": "release",
+      "displayName": "Release (for benchmarks and perf)",
+      "binaryDir": "${sourceDir}/build/release",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" }
+    },
+    {
+      "name": "tsan",
+      "displayName": "Debug + ThreadSanitizer (stage 4 onwards)",
+      "binaryDir": "${sourceDir}/build/tsan",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug", "QL_TSAN": "ON" }
+    }
+  ],
+  "buildPresets": [
+    { "name": "debug-asan", "configurePreset": "debug-asan" },
+    { "name": "release", "configurePreset": "release" },
+    { "name": "tsan", "configurePreset": "tsan" }
+  ]
+}
